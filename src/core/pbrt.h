@@ -115,12 +115,18 @@ struct Options {
                 quickRender = openWindow = verbose = false;
                 topng = false;
                 quiet = false;
+                withBackground = false;
+                pngFile = "";
+                backgroundImage = "";
                 imageFile = ""; }
     int nCores;
     bool topng;
     bool quickRender;
     bool quiet, verbose;
     bool openWindow;
+    bool withBackground;
+    string pngFile;
+    string backgroundImage;
     string imageFile;
 
 };

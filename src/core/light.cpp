@@ -24,14 +24,16 @@
 
 // core/light.cpp*
 #include "stdafx.h"
+#include "pbrt.h"
 #include "light.h"
 #include "scene.h"
 #include "montecarlo.h"
 #include "paramset.h"
 #include "sh.h"
+#include "background.h"
 
 
-
+Background bground;
 // Light Method Definitions
 Light::~Light() {
 
@@ -51,8 +53,21 @@ Spectrum VisibilityTester::Transmittance(const Scene *scene,
 }
 
 
+Spectrum Light::Le(const RayDifferential &, Sample *sample) const {
+    Spectrum col;
+    if(PbrtOptions.withBackground){
+    	/*float carray[3];
+    	carray[0] = bground.colours[0];
+    	carray[1] = bground.colours[1];
+    	carray[2] = bground.colours[2];*/
+    	bground.get_colour((size_t)sample->imageX, (size_t)sample->imageY);
+    	return col.FromRGB(bground.colours, SPECTRUM_REFLECTANCE);
+    }
+    else
+    	return Spectrum(0.);
+}
 Spectrum Light::Le(const RayDifferential &) const {
-    return Spectrum(0.);
+    	return Spectrum(0.);
 }
 
 

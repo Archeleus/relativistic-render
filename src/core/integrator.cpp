@@ -155,7 +155,8 @@ Spectrum EstimateDirect(const Scene *scene, const Renderer *renderer,
                     Li = lightIsect.Le(-wi);
             }
             else
-                Li = light->Le(ray);
+                //Li = light->Le(ray,);
+            	Li = Spectrum(0.);
             if (!Li.IsBlack()) {
                 Li *= renderer->Transmittance(scene, ray, NULL, rng, arena);
                 Ld += f * Li * AbsDot(wi, n) * weight / bsdfPdf;

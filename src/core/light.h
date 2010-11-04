@@ -35,6 +35,7 @@
 #include "spectrum.h"
 #include "rng.h"
 #include "memory.h"
+#include "background.h"
 
 // Light Declarations
 class Light {
@@ -57,6 +58,7 @@ public:
         VisibilityTester *vis) const = 0;
     virtual Spectrum Power(const Scene *) const = 0;
     virtual bool IsDeltaLight() const = 0;
+    virtual Spectrum Le(const RayDifferential &r, Sample *sample) const;
     virtual Spectrum Le(const RayDifferential &r) const;
     virtual float Pdf(const Point &p, const Vector &wi) const = 0;
     virtual Spectrum Sample_L(const Scene *scene, const LightSample &ls,

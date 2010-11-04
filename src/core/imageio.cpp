@@ -27,6 +27,7 @@
 #include "imageio.h"
 #include "spectrum.h"
 #include <ImageMagick/Magick++.h>
+#include "pbrt.h"
 
 // ImageIO Local Declarations
 static RGBSpectrum *ReadImageEXR(const string &name, int *width, int *height);
@@ -168,13 +169,13 @@ static void WriteImageEXR(const string &name, float *pixels,
     }
 
     delete[] hrgba;
-
+    if(PbrtOptions.topng){
     printf("\nWriting to PNG:");
     Magick::Image inputEXR;
     inputEXR.read(name);
-    inputEXR.write("output.png");
+    inputEXR.write(PbrtOptions.pngFile);
     printf("Done.\n");
-
+    }
 }
 
 
