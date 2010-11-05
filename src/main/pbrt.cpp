@@ -44,6 +44,9 @@ int main(int argc, char *argv[]) {
         }
         else if (!strcmp(argv[i], "--background")){ options.withBackground = true;
         options.backgroundImage = argv[++i];
+        //This is neccesary to prevent exceptions caused by Magick++
+        //@TODO: Mail the Magick++ list about this.
+        options.nCores = 1;
         }
         else if (!strcmp(argv[i], "--quiet")) options.quiet = false;
         else if (!strcmp(argv[i], "--verbose")) options.verbose = true;

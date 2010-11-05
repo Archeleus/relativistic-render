@@ -9,8 +9,9 @@ all:	build
 build:
 	@echo "Build started"
 	cd src; make
-	cd src/bin; cp pbrt ../../scenes
-	
+	cd src/bin; cp pbrt exrtopng ../../scenes
+	@echo "Done"
+
 clean:
 	@echo "Cleaning"
 	cd src; make clean
