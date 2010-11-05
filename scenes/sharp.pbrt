@@ -14,7 +14,7 @@ PixelFilter "mitchell" "float xwidth" [2] "float ywidth" [2]
 #name the file
 Film "image" "string filename" ["sharp.exr"]
 #     "integer xresolution" [2200] "integer yresolution" [1456]
-    "integer xresolution" [800] "integer yresolution" [600]
+    "integer xresolution" [1024] "integer yresolution" [768]
 
 #begin describing scene
 WorldBegin

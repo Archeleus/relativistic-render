@@ -34,6 +34,7 @@
 
 
 Background bground;
+
 // Light Method Definitions
 Light::~Light() {
 
@@ -56,6 +57,7 @@ Spectrum VisibilityTester::Transmittance(const Scene *scene,
 Spectrum Light::Le(const RayDifferential &, Sample *sample) const {
     Spectrum col;
     if(PbrtOptions.withBackground){
+    	//printf("Calling background\n");
     	/*float carray[3];
     	carray[0] = bground.colours[0];
     	carray[1] = bground.colours[1];

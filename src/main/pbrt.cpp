@@ -27,6 +27,7 @@
 #include "api.h"
 #include "probes.h"
 #include "parser.h"
+//#include "background.h"
 #include "parallel.h"
 
 // main program
@@ -38,12 +39,17 @@ int main(int argc, char *argv[]) {
         if (!strcmp(argv[i], "--ncores")) options.nCores = atoi(argv[++i]);
         else if (!strcmp(argv[i], "--outfile")) options.imageFile = argv[++i];
         else if (!strcmp(argv[i], "--quick")) options.quickRender = true;
-        else if (!strcmp(argv[i], "--topng")) options.topng = true;
+        else if (!strcmp(argv[i], "--topng")){ options.topng = true;
+        options.pngFile = argv[++i];
+        }
+        else if (!strcmp(argv[i], "--background")){ options.withBackground = true;
+        options.backgroundImage = argv[++i];
+        }
         else if (!strcmp(argv[i], "--quiet")) options.quiet = false;
         else if (!strcmp(argv[i], "--verbose")) options.verbose = true;
         else if (!strcmp(argv[i], "--help") || !strcmp(argv[i], "-h")) {
             printf("usage: pbrt [--ncores n] [--outfile filename] [--quick] [--quiet] "
-                   "[--verbose] [--topng] [--help] <filename.pbrt> ...\n");
+                   "[--verbose] [--topng png_filename] [--help] <filename.pbrt> ...\n");
             return 0;
         }
         else filenames.push_back(argv[i]);
@@ -54,7 +60,7 @@ int main(int argc, char *argv[]) {
     if (!options.quiet) {
         printf("pbrt version %s of %s at %s [Detected %d core(s)]\n",
                PBRT_VERSION, __DATE__, __TIME__, NumSystemCores());
-        printf("Relativistic Rendering Version 0, Alex, Allwin, Sanchit\n");
+        printf("Relativistic Rendering, Alex, Allwin, Sanchit\n");
         /*
         printf("Copyright (c)1998-2010 Matt Pharr and Greg Humphreys.\n");
         printf("The source code to pbrt (but *not* the book contents) is covered by the GNU GPL.\n");
@@ -64,6 +70,8 @@ int main(int argc, char *argv[]) {
 
     }
     pbrtInit(options);
+
+    //extern Background bground;
     // Process scene description
     PBRT_STARTED_PARSING();
     if (filenames.size() == 0) {

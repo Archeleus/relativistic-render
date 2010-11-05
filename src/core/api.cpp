@@ -33,6 +33,7 @@
 #include "film.h"
 #include "volume.h"
 #include "probes.h"
+#include "background.h"
 
 // API Additional Headers
 #include "accelerators/bvh.h"
@@ -675,6 +676,8 @@ void pbrtInit(const Options &opt) {
     renderOptions = new RenderOptions;
     graphicsState = GraphicsState();
     SampledSpectrum::Init();
+    //So I don't want to mess here but trying anyway
+    bground.read();
 }
 
 

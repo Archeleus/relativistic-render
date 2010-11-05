@@ -15,6 +15,7 @@ public:
 	float colours[3];
 	Magick::Image infile;
 	Magick::ColorRGB t;
+	void read();
 	Background();
 	void get_colour(size_t, size_t);
 };

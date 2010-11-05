@@ -10,9 +10,15 @@
 
 using namespace Magick;
 
-Background::Background(){
+void Background::read(){
 	infile.read(PbrtOptions.backgroundImage);
 	Pixels view(infile);
+}
+
+Background::Background(){
+
+	//infile.read(PbrtOptions.backgroundImage);
+	//Pixels view(infile);
 }
 
 void Background::get_colour(size_t x, size_t y){
