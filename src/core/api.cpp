@@ -677,6 +677,7 @@ void pbrtInit(const Options &opt) {
     graphicsState = GraphicsState();
     SampledSpectrum::Init();
     //So I don't want to mess here but trying anyway
+    if(PbrtOptions.withBackground)
     bground.read();
 }
 
